@@ -21,98 +21,8 @@ headers: {
 // }
 // })
 
-/*
- window.onload = () => {
-  getGenres();
-};
-
-const urlParams = new URLSearchParams(location.search);
-const ID = urlParams.get("id");
-console.log(ID);
 
 
-const url = "https://striveschool-api.herokuapp.com/api/movies";
-
-
-
-const options = {                
-    headers: new Headers({
-        "Content-Type": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2M5MzA5OWU3MzczODAwMTUzNzQzNzIiLCJpYXQiOjE2NzQ0MTU4MjksImV4cCI6MTY3NTYyNTQyOX0.13kwGYawX6UMCIWdGW6s5yIZNWGHj6esfxBZPgCyGFQ"
-    }),
-};
-
-
-
-const allGenres = [];
-const getGenres = async () => {
-    try {
-        const response = await fetch(url, options);
-        const genres = await response.json();
-        genres.forEach((genre) => {
-            allGenres.push(genre);
-            getMovies(genre);
-        });
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-
- 
-const getMovies = async (genre) => {
-    try {
-        const response = await fetch(url + "/" + genre, options);
-        const data = await response.json();
-        displayMovies(data, genre);
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-
-
-const comedyContainer = document.querySelector("#comedyContainer")
-
-const actionContainer = document.querySelector("#actionContainer")
-
-const horrorContainer = document.querySelector("#horrorContainer")
-
-const allContainer = document.querySelector("#allContainer")
-
-
-const allMovies = []
-const displayMovies = (allMovies, genre) => {
-    let theMovies = null;
-    switch (genre) {
-        case "comedy":
-            spaceForMovies = comedyContainer;
-            break;
-        case "action":
-            spaceForMovies = actionContainer;
-            break;
-        case "horror":
-            spaceForMovies = horrorContainer;
-            break;
-        }
-
-        if (theMovies !== null) {
-            moviesHTML = allMovies
-            .map(({ name, description, imageUrl }) => {
-                return `<div class="movie-card card col-sm-6 col-md-4 col-lg-3 col-xl-2 mx-2 my-2" style="width: 18rem;">
-                <img src="${imageUrl}" class="card-img-top">
-                <div class="card-body">
-                  <p class="card-title">${name}</p>
-                  <div class="dropdown-divider"></div>
-                  <p class="card-text">${description}</p>
-                </div>
-              </div>`;
-            })
-            .join("");
-            spaceForMovies.innerHTML = moviesHTML;
-        }
-};
-*/
 
 const url = "https://striveschool-api.herokuapp.com/api/movies";
 
@@ -156,11 +66,13 @@ const urlParams = new URLSearchParams(location.search);
 const ID = urlParams.get("id");
 console.log(ID);
 
-const comedyContainer = document.querySelector("#comedyContainer");
+const comedyContainer = document.querySelector("#comedyContainer")
 
-const actionContainer = document.querySelector("#actionContainer");
+const actionContainer = document.querySelector("#actionContainer")
 
-const horrorMoviesContainer = document.querySelector("#horrorMoviesContainer");
+const horrorMoviesContainer = document.querySelector("#horrorMoviesContainer")
+
+const defaultMoviesContainer = document.querySelector("#defaultMoviesContainer")
 
 
 const allMovies = []
@@ -176,6 +88,8 @@ const renderMovies = (allMovies, genre) => {
         case "horror":
             moviesContainer = horrorMoviesContainer;
             break;
+        default:
+            moviesContainer = defaultMoviesContainer;
         }
         if (moviesContainer !== null) {
             moviesInside = allMovies
